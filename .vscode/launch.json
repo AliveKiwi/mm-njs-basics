@@ -1,0 +1,21 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch Program",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}/app.js",
+            // Add below three setting to run debugger in nodemon
+            "restart":true, 
+            "runtimeExecutable": "nodemon", // changed from node to nodemon
+            "console": "integratedTerminal" // You need to install nodemon globally to start nodemon in terminal npm install nodemon -g
+        }
+    ]
+}
