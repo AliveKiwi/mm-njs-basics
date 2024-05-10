@@ -12,6 +12,8 @@ app.use((req, res, next) => {
 
 app.use((req, res, next) => {
   console.log('I am another middlewre');
+  // Instead of res.write() and res.setHeader() we can directly do res.send()
+  res.send('<h1>Hello from Express!</h1>');
 });
 
 const server = http.createServer(app);
