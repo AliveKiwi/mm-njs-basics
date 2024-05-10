@@ -23,16 +23,18 @@ const server = http.createServer((req, res) => {
     });
 
     // listening to 'end' event to process the data
+    //  Uncomment the line below to make program run or add return in front of req.on
+    //  return req.on('end', () => {
     req.on('end', () => {
       // Creating a new buffer by concating, and converting it to string
       const parsedBody = Buffer.concat(body).toString();
       const message = parsedBody.split('=')[1]; // message = message=<value>
       fs.writeFileSync('message.txt', message);
+      // res.writeHead(302, { Location: '/' });
+      res.statusCode = 302;
+      res.setHeader('Location', '/');
+      return res.end();
     });
-    // res.writeHead(302, { Location: '/' });
-    res.statusCode = 302;
-    res.setHeader('Location', '/');
-    return res.end();
   }
   res.setHeader('Content-Type', 'text/html');
   res.write('<html>');
