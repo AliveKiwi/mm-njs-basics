@@ -1,6 +1,7 @@
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
+const expressHbs = require('express-handlebars');
 
 const rootDir = require('./util/path');
 
@@ -9,8 +10,18 @@ const shopRoutes = require('./routes/shop');
 
 const app = express();
 
+// Set view engine to handlebars
+
+// If you use this setting then you need to name your file as xyz.handlebars
+// app.engine('handlebars', expressHbs());
+// app.set('view engine', 'handlebars');
+
+// If you use this setting then you need to name your file as xyz.hbs
+app.engine('hbs', expressHbs());
+app.set('view engine', 'hbs');
+
 // Set view engine to pug
-app.set('view engine', 'pug');
+// app.set('view engine', 'pug');
 
 // Tells where to store views, but default the folder name is set to views, and below command is not required
 app.set('views', 'views');
@@ -26,7 +37,7 @@ app.use(shopRoutes);
 
 app.use((req, res, next) => {
   // res.status(404).sendFile(path.join(rootDir, 'views', '404.html'));
-  res.status(404).render('404', { pageTitle: '404' });
+  res.status(404).render('404', { pageTitle: 'Page Not Found' });
 });
 
 app.listen(3000);
