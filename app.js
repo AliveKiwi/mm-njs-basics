@@ -9,6 +9,12 @@ const shopRoutes = require('./routes/shop');
 
 const app = express();
 
+// Set view engine to pug
+app.set('view engine', 'pug');
+
+// Tells where to store views, but default the folder name is set to views, and below command is not required
+app.set('views', 'views');
+
 // To parse req.body
 app.use(bodyParser.urlencoded({ extended: false }));
 
