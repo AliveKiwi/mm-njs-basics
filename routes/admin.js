@@ -14,11 +14,11 @@ router.get('/add-product', (req, res, next) => {
   // res.sendFile(path.join(rootDir, 'views', 'add-product.html'));
   res.render('add-product', {
     pageTitle: 'Add Product',
-    path: '/admin/add-product',
-    formCSS: true,
-    productCSS: true,
-    activeAddProduct: true,
-    // layout: 'main-layout', // To specify a particular file for layout
+    path: '/admin/add-product', // For pug & ejs active class
+    // formCSS: true, // For handlebars
+    // productCSS: true, // For handlebars
+    // activeAddProduct: true, // For handlebars
+    // layout: 'main-layout', // For handlebars to specify a particular file for layout
   });
 });
 

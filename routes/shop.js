@@ -12,13 +12,13 @@ router.get('/', (req, res, next) => {
   // res.sendFile(path.join(rootDir, 'views', 'shop.html'));
 
   res.render('shop', {
-    products: adminData.products,
-    pageTitle: 'Shop',
-    path: '/',
-    hasProducts: adminData.products.length > 0,
-    productCSS: true,
-    activeShop: true,
-    // layout: 'main-layout', // To specify a particular file for layout
+    products: adminData.products, // Common for all
+    pageTitle: 'Shop', // Common for all
+    path: '/', // For pug & ejs active class
+    // hasProducts: adminData.products.length > 0, // For handlebars
+    // productCSS: true, // For handlebars
+    // activeShop: true, // For handlebars
+    // layout: 'main-layout', // For handlebars to specify a particular file for layout
   });
 });
 
