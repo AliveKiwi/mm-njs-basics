@@ -1,32 +1,12 @@
 const path = require('path');
 const express = require('express');
 
-const rootDir = require('../util/path');
-
+const productsController = require('../controllers/products');
 const router = express.Router();
 
-const products = [];
-
 // We are using get method to send the form, and action in form /add-product call post middleware
-router.get('/add-product', (req, res, next) => {
-  // The path must be an absolute path
-  // res.sendFile(path.join(__dirname, '../', 'views', 'add-product.html'));
-  // res.sendFile(path.join(rootDir, 'views', 'add-product.html'));
-  res.render('add-product', {
-    pageTitle: 'Add Product',
-    path: '/admin/add-product', // For pug & ejs active class
-    // formCSS: true, // For handlebars
-    // productCSS: true, // For handlebars
-    // activeAddProduct: true, // For handlebars
-    // layout: 'main-layout', // For handlebars to specify a particular file for layout
-  });
-});
+router.get('/add-product', productsController.getAddProduct);
 
-router.post('/add-product', (req, res, next) => {
-  // req.body won't work by default it need to be parsed by bodyParser
-  products.push({ title: req.body.title });
-  res.redirect('/');
-});
+router.post('/add-product', productsController.postAddProduct);
 
-exports.routes = router;
-exports.products = products;
+module.exports = router;
