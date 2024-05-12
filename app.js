@@ -9,6 +9,9 @@ const shopRoutes = require('./routes/shop');
 
 const app = express();
 
+// Set view engine to ejs
+app.set('view engine', 'ejs');
+
 // Set view engine to handlebars
 
 // If you use this setting then you need to name your file as xyz.handlebars
@@ -17,15 +20,17 @@ const app = express();
 
 // If you use this setting then you need to name your file as xyz.hbs
 // app.engine('hbs', expressHbs());
-app.engine(
-  'hbs',
-  expressHbs({
-    layoutsDir: 'views/layouts/',
-    defaultLayout: 'main-layout',
-    extname: 'hbs',
-  })
-);
-app.set('view engine', 'hbs');
+// app.engine(
+//   'hbs',
+//   expressHbs({
+//     layoutsDir: 'views/layouts/',
+//     defaultLayout: 'main-layout',
+//     extname: 'hbs',
+//   })
+// );
+// app.set('view engine', 'hbs');
+
+// Set view engine to pug
 
 // Set view engine to pug
 // app.set('view engine', 'pug');
