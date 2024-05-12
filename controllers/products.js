@@ -15,10 +15,20 @@ exports.postAddProduct = (req, res, next) => {
 };
 
 exports.getProducts = (req, res, next) => {
-  const products = Product.fetchAll();
-  res.render('shop', {
-    products: products,
-    pageTitle: 'Shop',
-    path: '/',
+  // Internall fetchAll will call => cb(JSON.parse(fileContent));
+  // Meaning (JSON.parse(fileContent)) => { is being exectued as callback when we execute fetchAll
+  //     res.render('shop', {
+  //     products: products,
+  //     pageTitle: 'Shop',
+  //     path: '/',
+  //   });
+  // }
+
+  Product.fetchAll((products) => {
+    res.render('shop', {
+      products: products,
+      pageTitle: 'Shop',
+      path: '/',
+    });
   });
 };

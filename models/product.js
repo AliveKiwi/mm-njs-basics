@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const rootDir = require('../util/path');
 
-console.log(rootDir);
+console.log('rrotDir', rootDir);
 
 module.exports = class Product {
   constructor(t) {
@@ -11,6 +11,7 @@ module.exports = class Product {
 
   save() {
     const filePath = path.join(rootDir, 'data', 'products.json');
+    console.log('filepath', filePath);
     fs.readFile(filePath, (err, fileContent) => {
       let products = [];
       // !err read as if no error
@@ -25,14 +26,14 @@ module.exports = class Product {
   }
 
   // Using static so I can call fetchAll on the Product class and not the class object
-  static fetchAll() {
+  static fetchAll(cb) {
     const filePath = path.join(rootDir, 'data', 'products.json');
 
     fs.readFile(filePath, (err, fileContent) => {
       if (err) {
-        return [];
+        cb([]);
       }
-      return JSON.parse(fileContent);
+      cb(JSON.parse(fileContent)); // The product data read from product.json would be passed callback function which would be used in shop.ejs
     });
   }
 };
